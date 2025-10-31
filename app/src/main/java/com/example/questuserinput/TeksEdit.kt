@@ -2,10 +2,13 @@ package com.example.questuserinput
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,29 +22,31 @@ import androidx.compose.ui.unit.dp
 @Composable
 
 fun FormDataDiri(modifier: Modifier
-){
+) {
     //variabel-variabel untuk mengingat nilai masukkan dari keyboard
 
-    var textNama by remember {mutableStateOf("") }
+    var textNama by remember { mutableStateOf("") }
 
-    var textAlamat by remember {mutableStateOf("") }
+    var textAlamat by remember { mutableStateOf("") }
 
-    var textJK by remember {mutableStateOf("") }
+    var textJK by remember { mutableStateOf("") }
 
     //variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
 
-    var nama by remember {mutableStateOf("") }
+    var nama by remember { mutableStateOf("") }
 
-    var alamat by remember {mutableStateOf("") }
+    var alamat by remember { mutableStateOf("") }
 
-    var jenis by remember {mutableStateOf("") }
+    var jenis by remember { mutableStateOf("") }
 
-    val gender:List<String> = listOf("laki-laki","perempuan")
+    val gender: List<String> = listOf("laki-laki", "perempuan")
 
-    Column(modifier = Modifier.padding(top = 50.dp),
+    Column(
+        modifier = Modifier.padding(top = 50.dp),
         verticalArrangement = Arrangement.Top,
 
-        horizontalAlignment = Alignment.CenterHorizontally) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         OutlinedTextField(
             value = textNama,
             singleLine = true,
@@ -51,11 +56,29 @@ fun FormDataDiri(modifier: Modifier
             label = { Text(text = "Nama Lengkap") },
 
             onValueChange = {
-                textNama = it}
+                textNama = it
+            }
         )
 
+        Row {
 
+            gender.forEach { item ->
+                Row(
+                    modifier = Modifier.selectable(
+                    selected = textJK == item,
+
+                    onClick = { textJK = item }
+
+                ), verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(
+                        selected = textJK == item,
+
+                        onClick = {
+                            textJK = item
+                        })
+                    Text(item)
+                }
+            }
+        }
     }
-
-
 }
