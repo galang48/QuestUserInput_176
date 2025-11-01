@@ -142,7 +142,7 @@ fun FormDataDiri(modifier: Modifier
             Column (modifier = Modifier.padding(horizontal = 5.dp, vertical = 15.dp),) {
                 Text(text = "Nama : "+nama, color = Color.White)
                 Text(text = "Gender : "+jenis, color = Color.White)
-                Text(text = "Alamat : "+jenis, color = Color.White)
+                Text(text = "Alamat : "+alamat, color = Color.White)
         }
         }
     }
